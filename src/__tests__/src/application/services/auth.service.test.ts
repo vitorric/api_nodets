@@ -1,8 +1,8 @@
 import { ErrorMessages } from '@shared/error-messages';
 import { Encrypt } from '@shared/crypto';
 import { createAuthServiceMocks } from '@tests/mocks/auth-service.mocks';
+import { userFake } from '@tests/fake/user.fake';
 
-// 🔧 Mock do Encrypt (como é uma função externa)
 jest.mock('@shared/crypto', () => ({
   Encrypt: jest.fn(),
 }));
@@ -10,15 +10,6 @@ jest.mock('@shared/crypto', () => ({
 describe('AuthService', () => {
   const { authServiceMock, userRepositoryMock, jwtProviderMock } =
     createAuthServiceMocks();
-
-  const fakeUser = {
-    _id: 'user-id-123',
-    name: 'John Doe',
-    email: 'john@example.com',
-    password: 'encrypted-pass',
-    status: true,
-    deleted: false,
-  };
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -32,7 +23,7 @@ describe('AuthService', () => {
 
     it('should return success with JWT when credentials are valid', async () => {
       (Encrypt as jest.Mock).mockReturnValue('encrypted-pass');
-      userRepositoryMock.auth.mockResolvedValue(fakeUser);
+      userRepositoryMock.auth.mockResolvedValue(userFake);
       jwtProviderMock.create.mockReturnValue('jwt-token');
 
       const result = await authServiceMock.login(validRequest);
@@ -43,7 +34,7 @@ describe('AuthService', () => {
         'encrypted-pass',
       );
       expect(jwtProviderMock.create).toHaveBeenCalledWith(
-        { _id: fakeUser._id, name: fakeUser.name },
+        { _id: userFake._id, name: userFake.name },
         480,
       );
 
@@ -88,7 +79,7 @@ describe('AuthService', () => {
     };
 
     it('should return user name when user exists', async () => {
-      userRepositoryMock.getById.mockResolvedValue(fakeUser);
+      userRepositoryMock.getById.mockResolvedValue(userFake);
 
       const result = await authServiceMock.me(validRequest);
 
