@@ -9,6 +9,7 @@
     "postbuild": "cp package.json dist/package.json && cp yarn.lock dist/yarn.lock",
     "build:prod": "npm run build --stage=production",
     "build:hom": "npm run build --stage=homolog",
+    "test": "jest",
     "dev": "NODE_ENV=local nodemon -r tsconfig-paths/register src/server.ts"
   },
   "dependencies": {
@@ -39,6 +40,7 @@
     "@swc/core": "^1.7.28",
     "@swc/helpers": "^0.5.13",
     "@types/cors": "^2.8.17",
+    "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.7.3",
@@ -57,8 +59,12 @@
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "jest-mock-extended": "^4.0.0-beta1",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2"

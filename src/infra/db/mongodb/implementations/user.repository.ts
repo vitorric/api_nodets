@@ -1,8 +1,8 @@
-import { IUserRepository } from 'src/interfaces/repository/user-repository.interface';
 import User from '@domain/entities/user';
 import { TObject } from '@domain/types';
 import { userSchema } from '../schema/user.schema';
 import { ObjectIdCast } from '../utils';
+import { IUserRepository } from '@interfaces/repository/user-repository.interface';
 
 class UserRepository implements IUserRepository {
   async create(user: User): Promise<User> {
