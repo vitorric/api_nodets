@@ -1,7 +1,7 @@
 import { Schema, Document } from 'mongoose';
 
 import conn from '../connection';
-import User from '@domain/entities/User';
+import User from '@domain/entities/user';
 
 type DocumentModel = Document & User;
 

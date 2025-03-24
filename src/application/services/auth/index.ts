@@ -1,5 +1,5 @@
-import { IJWTProvider } from 'src/interfaces/providers/IJWTProvider';
-import { IUserRepository } from 'src/interfaces/repository/IUserRepository';
+import { IJWTProvider } from 'src/interfaces/providers/jwt-provider.interface';
+import { IUserRepository } from 'src/interfaces/repository/user-repository.interface';
 import {
   AuthLoginRes,
   AuthMeRes,

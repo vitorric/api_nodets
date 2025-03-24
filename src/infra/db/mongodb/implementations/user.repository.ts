@@ -1,7 +1,7 @@
-import { IUserRepository } from 'src/interfaces/repository/IUserRepository';
-import User from '@domain/entities/User';
+import { IUserRepository } from 'src/interfaces/repository/user-repository.interface';
+import User from '@domain/entities/user';
 import { TObject } from '@domain/types';
-import { userSchema } from '../schema/UserSchema';
+import { userSchema } from '../schema/user.schema';
 import { ObjectIdCast } from '../utils';
 
 class UserRepository implements IUserRepository {

@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 import { TReturnFn } from '@domain/types';
-import { IAxiosProvider } from 'src/interfaces/providers/IAxiosProvider';
+import { IAxiosProvider } from 'src/interfaces/providers/axios-provider.interface';
 
 class AxiosProvider implements IAxiosProvider {
   errorHandle = (response: any): TReturnFn<any> => {

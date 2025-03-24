@@ -1,8 +1,9 @@
-import { IJWTProvider, JWTUser } from 'src/interfaces/providers/IJWTProvider';
+import { IJWTProvider } from 'src/interfaces/providers/jwt-provider.interface';
 import JWT from 'jsonwebtoken';
+import { TJWTUser } from '@domain/types';
 
 class JWTProvider implements IJWTProvider {
-  create(user: JWTUser, minutes: number): string | null {
+  create(user: TJWTUser, minutes: number): string | null {
     try {
       return JWT.sign(
         {

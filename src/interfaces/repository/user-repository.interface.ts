@@ -1,4 +1,4 @@
-import User from '@domain/entities/User';
+import User from '@domain/entities/user';
 import { TObject } from '@domain/types';
 
 export interface IUserRepository {

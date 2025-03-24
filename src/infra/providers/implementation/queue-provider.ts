@@ -4,7 +4,7 @@ import {
   IQueueProvider,
   Queues,
   TQueueProviderBatch,
-} from 'src/interfaces/providers/IQueueProvider';
+} from 'src/interfaces/providers/queue-provider.interface';
 import {
   DeleteMessageCommand,
   ReceiveMessageCommand,
@@ -13,7 +13,7 @@ import {
   SendMessageBatchCommand,
 } from '@aws-sdk/client-sqs';
 
-import { configAWS } from '../utils/AWSConnection';
+import { configAWS } from '../shared/aws-connection';
 
 class QueueProvider implements IQueueProvider {
   private sqs: SQSClient;
