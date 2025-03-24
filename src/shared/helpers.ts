@@ -1,18 +1,17 @@
-export const RemoveSpecialChar = (value: string, limited?: boolean): string => {
-  if (value && !limited) {
-    return value
-      .toString()
-      .replace(/[^\w\s]+/gi, '')
-      .replace(/[\r\n\t]+/g, '');
-  }
-  if (value && limited) {
-    const dataPattern =
-      /[\r\t\n`~!@#$%^&*()_|+\-–=═?;:'",.<>¨¬£³²¹°´ªº/\\[\]]/gi;
+export const RemoveSpecialChars = (value: string, limited = false): string => {
+  if (!value) return value;
 
-    return value
-      .toString()
-      .replaceAll(dataPattern, '')
-      .replace(/[^\x00-\x7F]/g, '');
+  const normalized = value.toString();
+
+  if (!limited) {
+    return normalized.replace(/[^\w\s]+/gi, '').replace(/[\r\n\t]+/g, '');
   }
-  return value;
+
+  const limitedPattern =
+    /[\r\t\n`~!@#$%^&*()_|+\-–=═?;:'",.<>¨¬£³²¹°´ªº/\\[\]]/g;
+
+  return normalized
+    .replace(limitedPattern, '')
+    .replace(/[^\x00-\x7F]/g, '')
+    .trim();
 };

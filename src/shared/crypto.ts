@@ -1,11 +1,15 @@
 import crypto from 'crypto';
 
 const algorithm = 'AES-256-CTR';
-const cryptoKeyDefault: string = process.env.CRYPTO_KEY_DEFAULT!;
+const cryptoKeyDefault = (): string => process.env.CRYPTO_KEY_DEFAULT!;
 
 const Encrypt = (text: string): string | null => {
   try {
-    const key = crypto.scryptSync(cryptoKeyDefault, 'salt', 32);
+    if (!cryptoKeyDefault()) {
+      return null;
+    }
+
+    const key = crypto.scryptSync(cryptoKeyDefault(), 'salt', 32);
     const iv = Buffer.alloc(16, 0);
 
     const cipher = crypto.createCipheriv(algorithm, key, iv);
@@ -22,8 +26,12 @@ const Encrypt = (text: string): string | null => {
 
 const Decrypt = (cipher: string): string | null => {
   try {
-    const key = crypto.scryptSync(cryptoKeyDefault, 'salt', 32);
-    const iv = Buffer.alloc(16, 0); // Initialization vector.
+    if (!cryptoKeyDefault()) {
+      return null;
+    }
+
+    const key = crypto.scryptSync(cryptoKeyDefault(), 'salt', 32);
+    const iv = Buffer.alloc(16, 0);
 
     const decipher = crypto.createDecipheriv(algorithm, key, iv);
 

@@ -7,12 +7,12 @@ import {
   AuthMeSchema,
 } from '@domain/request/auth/auth-request-service';
 import { ErrorMessages } from '@shared/error-messages';
-import { validateSchema } from '@shared/validator-schema';
+import { ValidateSchema } from '@shared/validator-schema';
 import { Request } from 'express';
 
 class AuthController {
   async login(event: Request): Promise<ApiResponse> {
-    const validationReq = validateSchema<AuthLoginReq>(
+    const validationReq = ValidateSchema<AuthLoginReq>(
       AuthLoginSchema,
       event.body,
     );
@@ -33,7 +33,7 @@ class AuthController {
   }
 
   async me(event: Request): Promise<ApiResponse> {
-    const validationReq = validateSchema<AuthMeReq>(AuthMeSchema, event.user);
+    const validationReq = ValidateSchema<AuthMeReq>(AuthMeSchema, event.user);
 
     if (validationReq.isError()) {
       return unauthorized(ErrorMessages.AUTH.TOKEN_EXPIRED);

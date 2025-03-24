@@ -1,5 +1,5 @@
 import { authFactory } from '@application/factory/auth.factory';
-import { validateSchema } from '@shared/validator-schema';
+import { ValidateSchema } from '@shared/validator-schema';
 import { unauthorized, ok } from '@core/api-response';
 import { error, success } from '@core/either';
 import { ErrorMessages } from '@shared/error-messages';
@@ -18,8 +18,8 @@ jest.mock('@application/factory/auth.factory', () => {
 
 jest.mock('@shared/validator-schema');
 
-const mockedValidateSchema = validateSchema as jest.MockedFunction<
-  typeof validateSchema
+const mockedValidateSchema = ValidateSchema as jest.MockedFunction<
+  typeof ValidateSchema
 >;
 const mockedAuthFactory = authFactory as jest.Mocked<typeof authFactory>;
 

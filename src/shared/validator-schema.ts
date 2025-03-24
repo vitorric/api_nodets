@@ -2,7 +2,7 @@ import { ZodSchema } from 'zod';
 import { badRequest } from '@core/api-response';
 import { Either, error, success } from '@core/either';
 
-export function validateSchema<T>(
+export function ValidateSchema<T>(
   schema: ZodSchema,
   data: unknown,
 ): Either<ReturnType<typeof badRequest>, T> {
